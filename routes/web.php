@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,23 +16,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', function () {
-    return view('welcome');
+Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+Route::get('/admin/login', [LoginController::class, 'showFormLogin'])->name('login.showFormLogin');
+Route::post('/login', [LoginController::class,'login'])->name('login');
+
+Route::prefix('admin')->group(function () {
+
+    Route::prefix('users')->group(function () {
+        Route::get('', [UserController::class, 'index'])->name('users.index');
+        Route::get('/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/create', [UserController::class, 'store'])->name('users.store');
+        Route::get('/{id}', [UserController::class, 'detail'])->whereNumber('id')->name('users.detail');
+        Route::get('/{id}/comments/{id_comment?}', [UserController::class, 'getComment'])->name('users.getComment');
+    });
+
+    Route::prefix('posts')->group(function () {
+
+    });
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
 
 
-Route::post('/login', function (\Illuminate\Http\Request $request) {
-   $email = $request->email;
-   $password = $request->password;
 
-   if ($email == "admin@gmail.com" && $password == "1234") {
-       return redirect('home');
-   } else {
-       session()->flash('login_error', 'Tai khoan sai');
-       return redirect('login');
-   }
-});
+
+
+/*
+ * Route::method('uri', 'action')
+ *
+ * - method: GET - lấy tài nguyên
+ *           POST - them moi
+ *           PUT - cap nhat
+ *           DELETE - Xoa
+ *
+ * - action: - function x
+ *           - array [Controller::class, 'method'] -> nen su dung
+ *           - string - 'App\Http\Controllers@method' x
+ *
+ */

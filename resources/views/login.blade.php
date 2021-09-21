@@ -11,7 +11,7 @@
 @if(session()->has('login_error'))
   {{ session('login_error') }}
 @endif
-<form action="{{ url('login') }}" method="post">
+<form action="{{ route('login') }}" method="post">
     @csrf
     Email:
     <input type="text" name="email">

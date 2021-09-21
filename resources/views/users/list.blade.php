@@ -11,7 +11,25 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<a href="{{ route('users.index') }}">Danh sach nguoi dung</a>
+<div class="conntainer">
+    <table class="table">
+        <tr>
+            <td>STT</td>
+            <td>Name</td>
+            <td>Group</td>
+            <td>Address</td>
+
+        </tr>
+        @foreach($users as $key => $user)
+            <tr>
+                <td>{{ $key + 1 }}</td>
+                <td><a href="{{ route('users.detail', ['id' => $user['id']]) }}">{{ $user['name'] }}</a></td>
+                <td>{{ $user['group'] }}</td>
+                <td>{{ $user['address'] }}</td>
+            </tr>
+        @endforeach
+    </table>
+</div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
