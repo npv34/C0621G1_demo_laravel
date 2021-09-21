@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller implements BaseInterface
+class PostController extends Controller implements BaseInterface
 {
-    function index() {
-        return view('welcome');
+    //
+    function index()
+    {
+        // TODO: Implement index() method.
     }
 
     function create()

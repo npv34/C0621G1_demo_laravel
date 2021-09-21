@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController extends Controller implements BaseInterface, UserInterface
 {
+    private $userModel;
+    public function __construct(User $user)
+    {
+        $this->userModel = $user;
+    }
+
     function index() {
         $users = [
             [
@@ -37,5 +44,20 @@ class UserController extends Controller
 
     function getComment($idUser, $idComment = 1) {
 
+    }
+
+    function create()
+    {
+        // TODO: Implement create() method.
+    }
+
+    function delete($id)
+    {
+        // TODO: Implement delete() method.
+    }
+
+    function getPostOfUser($idUser)
+    {
+        // TODO: Implement getPostOfUser() method.
     }
 }
