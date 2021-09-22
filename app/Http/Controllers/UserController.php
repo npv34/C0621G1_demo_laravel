@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class UserController extends Controller implements BaseInterface, UserInterface
 {
@@ -35,7 +36,12 @@ class UserController extends Controller implements BaseInterface, UserInterface
                 "address" => "Viet Tri"
             ],
         ];
-        return view('users.list', compact('users'));
+        $message = "xin chao";
+        if (View::exists('users.list')) {
+            return view('users.list', compact('users','message'));
+        } else {
+            dd("loi");
+        }
     }
 
     function detail($id) {
@@ -48,7 +54,7 @@ class UserController extends Controller implements BaseInterface, UserInterface
 
     function create()
     {
-        // TODO: Implement create() method.
+        return \view('users.add');
     }
 
     function delete($id)

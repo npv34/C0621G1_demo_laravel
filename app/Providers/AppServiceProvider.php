@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $menu = [
+            "Home", "About", "Shop"
+        ];
+        // chia se du lieu tren toan bo view
+        \Illuminate\Support\Facades\View::share('menu', $menu);
     }
 
     /**
