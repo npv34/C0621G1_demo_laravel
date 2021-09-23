@@ -9,46 +9,26 @@ use Illuminate\Support\Facades\View;
 class UserController extends Controller implements BaseInterface, UserInterface
 {
     private $userModel;
+
     public function __construct(User $user)
     {
         $this->userModel = $user;
     }
 
-    function index() {
-        $users = [
-            [
-                "id" => 1,
-                "name" => "Dac Chien",
-                "group" => "C0621G1",
-                "address" => "Ha Noi"
-            ],
+    function index()
+    {
+        $users = User::all();
+        return view('users.list', compact('users'));
 
-            [
-                "id" => 2,
-                "name" => "Huy Cuong",
-                "group" => "C0621G1",
-                "address" => "Viet Tri"
-            ],
-            [
-                "id" => 3,
-                "name" => "Quoc Cuong",
-                "group" => "C0621G1",
-                "address" => "Viet Tri"
-            ],
-        ];
-        $message = "xin chao";
-        if (View::exists('users.list')) {
-            return view('users.list', compact('users','message'));
-        } else {
-            dd("loi");
-        }
     }
 
-    function detail($id) {
+    function detail($id)
+    {
         echo $id;
     }
 
-    function getComment($idUser, $idComment = 1) {
+    function getComment($idUser, $idComment = 1)
+    {
 
     }
 
@@ -65,5 +45,16 @@ class UserController extends Controller implements BaseInterface, UserInterface
     function getPostOfUser($idUser)
     {
         // TODO: Implement getPostOfUser() method.
+    }
+
+    function store(Request $request)
+    {
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->save();
+        return redirect()->route('users.index');
+
     }
 }
