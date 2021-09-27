@@ -47,7 +47,10 @@
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td><a href="{{ route('users.update', ['id' => $user->id]) }}" class="btn btn-primary">Update</a></td>
+                                        <td>
+                                            <a href="{{ route('users.update', ['id' => $user->id]) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
