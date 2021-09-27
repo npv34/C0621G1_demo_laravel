@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -47,7 +48,7 @@ class UserController extends Controller implements BaseInterface, UserInterface
         // TODO: Implement getPostOfUser() method.
     }
 
-    function store(Request $request)
+    function store(CreateUserRequest $request)
     {
         $user = new User();
         $user->name = $request->name;

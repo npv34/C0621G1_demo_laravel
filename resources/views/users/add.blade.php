@@ -32,19 +32,34 @@
                             <form action="{{ route('users.store') }}" class="form" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <lable>Tên</lable>
-                                    <input type="text" class="form-control" name="name">
+                                    <lable>Tên</lable><strong class="text-danger">*</strong>
+                                    <input type="text" value="{{ old('name') }}" class="form-control @error('name') is-invalid  @enderror" name="name">
+                                    @error('name')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <lable>Email</lable>
-                                    <input type="email" class="form-control" name="email">
+                                    <lable>Email</lable><strong class="text-danger">*</strong>
+                                    <input type="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid  @enderror" name="email">
+                                    @error('email')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <lable>Mật khẩu</lable>
+                                    <lable>Mật khẩu</lable><strong class="text-danger">*</strong>
                                     <input type="password" class="form-control" name="password">
+                                    @error('password')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <lable>Nhập lại mật khẩu</lable><strong class="text-danger">*</strong>
+                                    <input type="password" class="form-control" name="password_confirmation">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Lưu</button>
+                                <p>Trường <strong class="text-danger"> * </strong> là trường bắt buộc!</p>
                             </form>
+
                         </div>
                         <!-- /.card-body -->
                     </div>
