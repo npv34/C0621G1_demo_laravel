@@ -1,17 +1,17 @@
 @extends('layouts.app')
-@section('title','Danh sach nnguoi dung')
+@section('title','Danh sách người dùng')
 @section('content')
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>DataTables</h1>
+
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active"Danh sách người dùng</li>
+                        <li class="breadcrumb-item active">Danh sách người dùng</li>
                     </ol>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <a href="{{ route('users.create') }}">Them moi</a>
+                                <a class="btn btn-success" href="{{ route('users.create') }}">Thêm mới</a>
                             </h3>
                         </div>
                         <!-- /.card-header -->
@@ -35,7 +35,7 @@
                                 <thead>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Ten</th>
+                                    <th>Tên</th>
                                     <th>Email</th>
                                     <th></th>
 
@@ -47,14 +47,14 @@
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td></td>
+                                        <td><a href="{{ route('users.update', ['id' => $user->id]) }}" class="btn btn-primary">Update</a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                                 <tfoot>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Ten</th>
+                                    <th>Tên</th>
                                     <th>Email</th>
                                     <th></th>
                                 </tr>

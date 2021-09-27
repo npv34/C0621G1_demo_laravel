@@ -57,4 +57,19 @@ class UserController extends Controller implements BaseInterface, UserInterface
         return redirect()->route('users.index');
 
     }
+
+    function update($id)
+    {
+        $user = User::findOrFail($id);
+        return \view('users.update', compact('user'));
+    }
+
+    function edit(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+        return redirect()->route('users.index');
+    }
 }

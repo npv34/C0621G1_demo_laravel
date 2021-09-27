@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Thêm mới người dùng')
+@section('title', 'Chỉnh sửa thông tin người dùng')
 @section('content')
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -11,7 +11,6 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-
                     </ol>
                 </div>
             </div>
@@ -25,24 +24,21 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Thêm mới người dùng</h3>
+                            <h3 class="card-title">Chỉnh sửa thông tin người dùng</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="{{ route('users.store') }}" class="form" method="post">
+                            <form action="" class="form" method="post">
                                 @csrf
                                 <div class="form-group">
                                     <lable>Tên</lable>
-                                    <input type="text" class="form-control" name="name">
+                                    <input type="text" value="{{ $user->name }}" class="form-control" name="name">
                                 </div>
                                 <div class="form-group">
                                     <lable>Email</lable>
-                                    <input type="email" class="form-control" name="email">
+                                    <input type="email" value="{{ $user->email }}" class="form-control" name="email">
                                 </div>
-                                <div class="form-group">
-                                    <lable>Mật khẩu</lable>
-                                    <input type="password" class="form-control" name="password">
-                                </div>
+
                                 <button type="submit" class="btn btn-primary">Lưu</button>
                             </form>
                         </div>

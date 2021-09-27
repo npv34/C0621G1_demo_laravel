@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 Route::get('/admin/login', [LoginController::class, 'showFormLogin'])->name('login.showFormLogin');
 Route::post('/login', [LoginController::class,'login'])->name('login');
 
 Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('home.index');
 
     Route::prefix('users')->group(function () {
         Route::get('', [UserController::class, 'index'])->name('users.index');
@@ -28,6 +28,8 @@ Route::prefix('admin')->group(function () {
         Route::post('/create', [UserController::class, 'store'])->name('users.store');
         Route::get('/{id}', [UserController::class, 'detail'])->whereNumber('id')->name('users.detail');
         Route::get('/{id}/comments/{id_comment?}', [UserController::class, 'getComment'])->name('users.getComment');
+        Route::get('{id}/update', [UserController::class, 'update'])->name('users.update');
+        Route::post('{id}/update', [UserController::class, 'edit'])->name('users.edit');
     });
 
     Route::prefix('posts')->group(function () {
