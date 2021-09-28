@@ -16,12 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin/login', [LoginController::class, 'showFormLogin'])->name('login.showFormLogin');
-Route::post('/login', [LoginController::class,'login'])->name('login');
+Route::get('/admin/login', [LoginController::class, 'showFormLogin'])->name('login');
+Route::post('/login', [LoginController::class,'login'])->name('auth.login');
 
-Route::prefix('admin')->group(function () {
+Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/dashboard', [HomeController::class, 'index'])->name('home.index');
-
     Route::prefix('users')->group(function () {
         Route::get('', [UserController::class, 'index'])->name('users.index');
         Route::get('/create', [UserController::class, 'create'])->name('users.create');

@@ -46,6 +46,17 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <lable>Role</lable><strong class="text-danger">*</strong>
+                                    @foreach($roles as $role)
+                                        <div class="form-check">
+                                            <input name="role[{{$role->id}}]" class="form-check-input" type="checkbox" value="{{ $role->id }}" id="role-{{$role->id}}">
+                                            <label class="form-check-label" for="role-{{$role->id}}">
+                                                {{ $role->name }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="form-group">
                                     <lable>Mật khẩu</lable><strong class="text-danger">*</strong>
                                     <input type="password" class="form-control" name="password">
                                     @error('password')

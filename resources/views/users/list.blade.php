@@ -37,6 +37,7 @@
                                     <th>STT</th>
                                     <th>Tên</th>
                                     <th>Email</th>
+                                    <th>Chức vụ</th>
                                     <th></th>
 
                                 </tr>
@@ -48,7 +49,17 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
-                                            <a href="{{ route('users.update', ['id' => $user->id]) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            @if(count($user->roles) > 0)
+                                                @foreach($user->roles as $role)
+                                                    {{ $role->name . ',' }}
+                                                @endforeach
+                                            @else
+                                                {{ 'Chưa phân loại' }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('users.update', ['id' => $user->id]) }}"
+                                               class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                             <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
@@ -59,6 +70,7 @@
                                     <th>STT</th>
                                     <th>Tên</th>
                                     <th>Email</th>
+                                    <th>Chức vụ</th>
                                     <th></th>
                                 </tr>
                                 </tfoot>
