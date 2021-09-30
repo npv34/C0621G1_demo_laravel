@@ -18,6 +18,7 @@ class LoginService
             'password' => $password
         ];
 
+
         return Auth::attempt($credentials);
 
     }
