@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -97,25 +98,48 @@
                             Sales
                         </h3>
                         <div class="card-tools">
-                            <ul class="nav nav-pills ml-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                                </li>
-                            </ul>
+
                         </div>
                     </div><!-- /.card-header -->
                     <div class="card-body">
                         <div class="tab-content p-0">
                             <!-- Morris chart - Sales -->
-                            <div class="chart tab-pane active" id="revenue-chart"
-                                 style="position: relative; height: 300px;">
-                                <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-                            </div>
-                            <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                                <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
+                            <div class="card">
+
+                                <h2>{{ $cityName }}</h2>
+                                <h3>{{ $weather }}<span>Wind {{ $winSpeed }}m/s <span class="dot">•</span> Precip 0%</span></h3>
+                                <h1>{{$oC}}°</h1>
+                                <div class="sky">
+                                    <div class="sun"></div>
+                                    <div class="cloud">
+                                        <div class="circle-small"></div>
+                                        <div class="circle-tall"></div>
+                                        <div class="circle-medium"></div>
+                                    </div>
+                                </div>
+                                <table>
+                                    <tr>
+                                        <td>TUE</td>
+                                        <td>WED</td>
+                                        <td>THU</td>
+                                        <td>FRI</td>
+                                        <td>SAT</td>
+                                    </tr>
+                                    <tr>
+                                        <td>30°</td>
+                                        <td>34°</td>
+                                        <td>36°</td>
+                                        <td>34°</td>
+                                        <td>37°</td>
+                                    </tr>
+                                    <tr>
+                                        <td>17°</td>
+                                        <td>22°</td>
+                                        <td>19°</td>
+                                        <td>23°</td>
+                                        <td>19°</td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div><!-- /.card-body -->

@@ -123,6 +123,10 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    // key api openweather
+
+    'key_open_weather' => env('OPEN_WEATHER'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
