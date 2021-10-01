@@ -12,4 +12,5 @@ interface UserInterface
     function getPostOfUser($idUser);
     function update($id);
     function edit(Request $request, $id);
+    function delete($id);
 }

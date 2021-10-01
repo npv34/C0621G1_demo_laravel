@@ -47,7 +47,7 @@ class UserController extends Controller implements BaseInterface, UserInterface
         $user = User::findOrFail($id);
         $user->roles()->detach();
         $user->delete();
-        return redirect()->route('users.index');
+        return response()->json(['message' => 'Delete successfully']);
     }
 
     function getPostOfUser($idUser)
@@ -95,5 +95,11 @@ class UserController extends Controller implements BaseInterface, UserInterface
         }
 
         return redirect()->route('users.index');
+    }
+
+    function search(Request $request) {
+        $keyword = $request->keyword;
+        $users = User::where('name', 'LIKE', '%' . $keyword . '%')->get();
+        return response()->json($users);
     }
 }

@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('', function () {
+    return redirect()->route('home.index');
+});
 Route::get('/admin/login', [LoginController::class, 'showFormLogin'])->name('login');
 Route::post('/login', [LoginController::class,'login'])->name('auth.login');
 
@@ -29,6 +31,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('/{id}/comments/{id_comment?}', [UserController::class, 'getComment'])->name('users.getComment');
         Route::get('{id}/update', [UserController::class, 'update'])->name('users.update');
         Route::post('{id}/update', [UserController::class, 'edit'])->name('users.edit');
+        Route::get('{id}/delete', [UserController::class, 'delete'])->name('users.delete');
+        Route::get('search', [UserController::class, 'search'])->name('users.delete');
     });
 
     Route::prefix('posts')->group(function () {

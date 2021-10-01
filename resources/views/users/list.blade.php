@@ -25,8 +25,18 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">
-                                <a class="btn btn-success" href="{{ route('users.create') }}">Thêm mới</a>
+                            <h3 class="col-12 card-title">
+                                <div class=" row">
+                                    <div class="col-12 col-md-2">
+                                        <a class="btn btn-success" href="{{ route('users.create') }}">Thêm mới</a>
+                                    </div>
+                                    <div class="col-12 col-md-10">
+                                        <input type="text" class="form-control " id="search-user">
+                                        <ul id="list-user-search" class="list-group"></ul>
+                                    </div>
+                                </div>
+
+
                             </h3>
                         </div>
                         <!-- /.card-header -->
@@ -44,7 +54,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($users as $key => $user)
-                                    <tr>
+                                    <tr class="user-item" id="user-{{$user->id}}">
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
@@ -60,7 +70,7 @@
                                         <td>
                                             <a href="{{ route('users.update', ['id' => $user->id]) }}"
                                                class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                            <button data-id="{{$user->id}}" class="btn btn-danger delete-user"><i class="fas fa-trash"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
