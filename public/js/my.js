@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    let origin = location.origin;
     $(".user-item").hover(function () {
         $(this).css('background-color', "red")
     }, function () {
@@ -54,5 +54,51 @@ $(document).ready(function () {
 
         }
 
+    });
+
+    $('#search-student-borrow').keyup(function () {
+        let value = $(this).val();
+        if (value) {
+            $.ajax({
+                url: origin + '/admin/borrows/search-student',
+                method: 'GET',
+                data: {
+                    keyword: value
+                },
+                success: function (res) {
+                    let html = '';
+                    res.forEach(function (item, index) {
+                        html += '<button data-id="'+ item.id +'" class="list-group-item list-group-item-action student-item">';
+                        html += item.name;
+                        html += '</button>'
+                    })
+                    $('#list-student-borrow-search').html(html);
+                    console.log(res)
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            })
+        }else  {
+            $('#list-student-borrow-search').html('');
+        }
     })
+
+    $('body').on('click','.student-item',function () {
+        let idStudentClicked = $(this).attr('data-id');
+        $.ajax({
+            url: origin + '/admin/borrows/find-student/' + idStudentClicked,
+            method: 'GET',
+            success: function (res) {
+                $('#name-student-borrow').val(res.name);
+                $('#email-student-borrow').val(res.email);
+                $('#phone-student-borrow').val(res.phone);
+                $('#list-student-borrow-search').html('');
+            }
+        })
+    });
+
+    function showBooksBorrow() {
+
+    }
 })

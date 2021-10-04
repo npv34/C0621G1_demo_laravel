@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BorrownController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
@@ -32,29 +33,15 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('{id}/update', [UserController::class, 'update'])->name('users.update');
         Route::post('{id}/update', [UserController::class, 'edit'])->name('users.edit');
         Route::get('{id}/delete', [UserController::class, 'delete'])->name('users.delete');
-        Route::get('search', [UserController::class, 'search'])->name('users.delete');
+        Route::get('search', [UserController::class, 'search'])->name('users.search');
     });
 
-    Route::prefix('posts')->group(function () {
-
+    Route::prefix('borrows')->group(function () {
+        Route::get('/create', [BorrownController::class, 'create'])->name('borrows.create');
+        Route::get('/search-student', [BorrownController::class, 'searchStudent']);
+        Route::get('/find-student/{idStudent}', [BorrownController::class, 'findStudent']);
     });
+
+
 });
 
-
-
-
-
-
-/*
- * Route::method('uri', 'action')
- *
- * - method: GET - lấy tài nguyên
- *           POST - them moi
- *           PUT - cap nhat
- *           DELETE - Xoa
- *
- * - action: - function x
- *           - array [Controller::class, 'method'] -> nen su dung
- *           - string - 'App\Http\Controllers@method' x
- *
- */

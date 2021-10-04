@@ -8,5 +8,5 @@
 - php artisan serve
 
 ###Yêu cầu:
-- Hoàn thiện quản lý sách, thể loại sách
-- Validate dữ liệu toàn bộ các form
+- Hoàn thiện quản lý sinh viên
+- Hoàn thiện chức năng mượn sách
