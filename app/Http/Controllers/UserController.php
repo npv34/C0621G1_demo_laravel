@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 
@@ -38,16 +39,26 @@ class UserController extends Controller implements BaseInterface, UserInterface
 
     function create()
     {
-        $roles = Role::all();
-        return \view('users.add', compact('roles'));
+        if (Gate::allows('user-crud')) {
+            $roles = Role::all();
+            return \view('users.add', compact('roles'));
+        } else {
+            abort(403);
+        }
+
     }
 
     function delete($id)
     {
-        $user = User::findOrFail($id);
-        $user->roles()->detach();
-        $user->delete();
-        return response()->json(['message' => 'Delete successfully']);
+        if (Gate::allows('user-crud')) {
+            $user = User::findOrFail($id);
+            $user->roles()->detach();
+            $user->delete();
+            return response()->json(['message' => 'Delete successfully']);
+        } else {
+            abort(403);
+        }
+
     }
 
     function getPostOfUser($idUser)

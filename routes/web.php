@@ -42,6 +42,6 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('/find-student/{idStudent}', [BorrownController::class, 'findStudent']);
     });
 
-
+   Route::get('logout', [LoginController::class,'logout'])->name('auth.logout');
 });
 

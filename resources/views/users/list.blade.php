@@ -28,7 +28,9 @@
                             <h3 class="col-12 card-title">
                                 <div class=" row">
                                     <div class="col-12 col-md-2">
+                                        @can('user-crud')
                                         <a class="btn btn-success" href="{{ route('users.create') }}">Thêm mới</a>
+                                        @endcan
                                     </div>
                                     <div class="col-12 col-md-10">
                                         <input type="text" class="form-control " id="search-user">

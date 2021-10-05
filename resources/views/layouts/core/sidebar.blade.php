@@ -44,6 +44,7 @@
                     </a>
 
                 </li>
+                @can('user-crud')
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
@@ -62,6 +63,7 @@
 
                     </ul>
                 </li>
+                @endcan
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
