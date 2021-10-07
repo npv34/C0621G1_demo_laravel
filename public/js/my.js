@@ -10,7 +10,7 @@ $(document).ready(function () {
         if (confirm('Are you sure')) {
             let idUser = $(this).attr('data-id');
             $.ajax({
-                url: 'http://127.0.0.1:8000/admin/users/' + idUser + '/delete',
+                url: origin + '/admin/users/' + idUser + '/delete',
                 method: 'GET',
                 dataType: 'json',
                 success: function (res) {
@@ -29,7 +29,7 @@ $(document).ready(function () {
         let value = $(this).val();
         if (value) {
             $.ajax({
-                url: 'http://127.0.0.1:8000/admin/users/search',
+                url: origin + '/admin/users/search',
                 method: 'GET',
                 data: {
                     keyword: value
