@@ -27,9 +27,7 @@
                             <h3 class="card-title">Thêm mới phiếu mượn</h3>
                         </div>
                         <!-- /.card-header -->
-                        <form action="">
 
-                            @csrf
                             <div class="card-body">
                                 <div class="row">
 
@@ -140,7 +138,7 @@
 
                                 </div>
                             </div>
-                        </form>
+
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
