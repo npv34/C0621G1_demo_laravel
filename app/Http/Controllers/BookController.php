@@ -12,4 +12,9 @@ class BookController extends Controller
 
       //  $books = Book::
     }
+
+    public function index()
+    {
+        echo 'toi là nam nè';
+    }
 }
